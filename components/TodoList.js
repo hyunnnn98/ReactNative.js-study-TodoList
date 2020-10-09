@@ -6,7 +6,7 @@ export default TodoList = ({ list }) => {
     // JS 내장함수 filter 활용!!
     const completedCount = list.todos.filter(todo => todo.completed).length;
     const remainingCount = list.todos.length - completedCount;
-
+    
     return (
         <View style={[styles.listContainer, { backgroundColor: list.color }]}>
             <Text style={styles.listTitle} numberOfLines={1}>

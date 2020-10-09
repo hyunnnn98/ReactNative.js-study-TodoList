@@ -51,7 +51,7 @@ export default tempData = [
     },
     {
         name: "캡스톤 프로젝트",
-        color: "orange",
+        color: "#5CD859",
         todos: [
             {
                 title: "UML 그리기",
