@@ -1,32 +1,52 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { Component } from 'react'
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Colors from '../Colors'
+import TodoModal from './TodoModal'
 
-export default TodoList = ({ list }) => {
-    // JS 내장함수 filter 활용!!
-    const completedCount = list.todos.filter(todo => todo.completed).length;
-    const remainingCount = list.todos.length - completedCount;
-    
-    return (
-        <View style={[styles.listContainer, { backgroundColor: list.color }]}>
-            <Text style={styles.listTitle} numberOfLines={1}>
-                {list.name}
-            </Text>
+export default class TodoList extends Component {
+    state = {
+        showListVisible: false
+    }
 
+    toogleListModal() {
+        this.setState({ showListVisible: !this.state.showListVisible })
+    }
+    render() {
+        const list = this.props.list;
+
+        // JS 내장함수 filter 활용!!
+        const completedCount = list.todos.filter(todo => todo.completed).length;
+        const remainingCount = list.todos.length - completedCount;
+
+        return (
             <View>
-                <View style={{ alignItems: "center" }}>
-                    <Text style={styles.count}>{completedCount}</Text>
-                    <Text style={styles.subtitle}>Remaining</Text>
-                </View>
-                <View style={{ alignItems: "center" }}>
-                    <Text style={styles.count}>{remainingCount}</Text>
-                    <Text style={styles.subtitle}>Completed</Text>
-                </View>
+                <Modal animationType="slide" visible={this.state.showListVisible} onRequestClose={() => this.toogleListModal()}>
+                    <TodoModal list={list} closeModal={() => this.toogleListModal()} />
+                </Modal>
+                <TouchableOpacity
+                    style={[styles.listContainer, { backgroundColor: list.color }]}
+                    onPress={() => this.toogleListModal()}
+                >
+                    <Text style={styles.listTitle} numberOfLines={1}>
+                        {list.name}
+                    </Text>
 
-            </View>
+                    <View>
+                        <View style={{ alignItems: "center" }}>
+                            <Text style={styles.count}>{completedCount}</Text>
+                            <Text style={styles.subtitle}>Remaining</Text>
+                        </View>
+                        <View style={{ alignItems: "center" }}>
+                            <Text style={styles.count}>{remainingCount}</Text>
+                            <Text style={styles.subtitle}>Completed</Text>
+                        </View>
 
-        </View>
-    )
+                    </View>
+
+                </TouchableOpacity>
+            </View >
+        )
+    }
 }
 
 const styles = StyleSheet.create({

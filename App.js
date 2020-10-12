@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, FlatList, Modal } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import tempData from './tempData';
@@ -6,7 +6,7 @@ import TodoList from './components/TodoList';
 import AddListModal from './components/AddListModal';
 import Colors from './Colors';
 
-export default class App extends React.Component {
+export default class App extends Component {
 
   state = {
     addTodoVisible: false
@@ -15,6 +15,11 @@ export default class App extends React.Component {
   toggleAddTodoModal() {
     this.setState({ addTodoVisible: !this.state.addTodoVisible })
   }
+
+  renderList = list => {
+    return <TodoList list={list} />
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -48,9 +53,7 @@ export default class App extends React.Component {
             keyExtractor={item => item.name}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <TodoList list={item} />
-            )}
+            renderItem={({ item }) => this.renderList(item)}
           />
         </View>
       </View>

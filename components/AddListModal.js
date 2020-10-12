@@ -49,7 +49,7 @@ export default class AddListModal extends Component {
 
                     <TextInput
                         style={styles.input}
-                        placeholder="List Name?"
+                        placeholder="List Name?" 
                         onChangeText={text => this.setState({ name: text })}
                     />
 
