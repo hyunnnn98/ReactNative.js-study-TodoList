@@ -2,6 +2,7 @@
 
 export default tempData = [
     {
+        id: 1,
         name: "일본 여행 계획",
         color: "#24A6D9",
         todos: [
@@ -24,6 +25,7 @@ export default tempData = [
         ]
     },
     {
+        id: 2,
         name: "농협 마트가기",
         color: "#8022D9",
         todos: [
@@ -50,6 +52,7 @@ export default tempData = [
         ]
     },
     {
+        id: 3,
         name: "캡스톤 프로젝트",
         color: "#5CD859",
         todos: [

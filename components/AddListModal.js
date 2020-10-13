@@ -15,11 +15,9 @@ export default class AddListModal extends Component {
     createTodo = () => {
         const { name, color } = this.state;
 
-        tempData.push({
-            name,
-            color,
-            todos: []
-        })
+        const list = {name, color};
+
+        this.props.addList(list);
 
         this.setState({ name: "" });
         this.props.closeModal();
@@ -39,7 +37,7 @@ export default class AddListModal extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
+            <KeyboardAvoidingView style={styles.container}>
                 <TouchableOpacity style={{ position: "absolute", top: 34, right: 32 }} onPress={this.props.closeModal}>
                     <AntDesign name="close" size={20} color={Colors.black} />
                 </TouchableOpacity>
